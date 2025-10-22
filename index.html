@@ -1,0 +1,815 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <style>
+        :root {
+            --primary-color: #1e3a8a;
+            --secondary-color: #3b82f6;
+            --accent-color: #e5e7eb;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            color: #2347a7;
+            font-weight: 600;
+        }
+
+        table {
+            width: 100%;
+        }
+
+        th,
+        td {
+            padding: 6px;
+            border: 1px solid #000;
+        }
+
+        #pills-tab {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        /* Mobile: 1 item per row */
+        #pills-tab .nav-item:nth-child(-n+4) {
+            flex: 0 0 100%;
+            max-width: 100%;
+        }
+
+        /* Tablet (≥768px): 2 items per row for first 4 */
+        @media (min-width: 768px) {
+            #pills-tab .nav-item:nth-child(-n+4) {
+                flex: 0 0 calc(50% - 0.5rem);
+                max-width: calc(50% - 0.5rem);
+            }
+        }
+
+        /* Desktop (≥992px): 4 items per row for first 4 */
+        @media (min-width: 992px) {
+            #pills-tab .nav-item:nth-child(-n+4) {
+                flex: 0 0 calc(25% - 0.5rem);
+                max-width: calc(25% - 0.5rem);
+            }
+        }
+
+        /* Remaining items auto-size with gap */
+        #pills-tab .nav-item:nth-child(n+5) {
+            flex: 0 0 auto;
+        }
+
+        .nav-pills .nav-link {
+            border-radius: var(--bs-nav-pills-border-radius);
+            border: 1px solid #374151;
+            color: #374151 !important;
+            background-color: #fff !important;
+        }
+
+        .nav-pills .nav-link.active,
+        .nav-pills .show>.nav-link {
+            color: #fff !important;
+            background-color: var(--primary-color) !important;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="page-banner"
+        style="background-image:linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://wust.edu/uploads/page-banner/17143062365347Screenshot_105-min.png');background-repeat: no-repeat;background-size: cover;background-position: center center; padding: 50px 0;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="page-banner-content text-center py-5">
+                        <h1 class="text-white display-3 fw-semibold">Curricular Practical Training (CPT)</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container mt-5">
+        <ul class="nav nav-pills nav-fill mb-3 gap-2 border-bottom pb-2" id="pills-tab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="pillsOverview-tab" data-bs-toggle="pill"
+                    data-bs-target="#pillsOverview" type="button" role="tab" aria-controls="pillsOverview"
+                    aria-selected="true">Overview</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="pills-Eligibility-tab" data-bs-toggle="pill"
+                    data-bs-target="#pills-Eligibility" type="button" role="tab" aria-controls="pills-Eligibility"
+                    aria-selected="false">Eligibility Requirements</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="pills-how-to-apply-tab" data-bs-toggle="pill"
+                    data-bs-target="#pills-how-to-apply" type="button" role="tab" aria-controls="pills-how-to-apply"
+                    aria-selected="false">How to Apply</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="pills-when-to-apply-tab" data-bs-toggle="pill"
+                    data-bs-target="#pills-when-to-apply" type="button" role="tab" aria-controls="pills-when-to-apply"
+                    aria-selected="false">When to Apply</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="pills-5-tab" data-bs-toggle="pill" data-bs-target="#pills-5" type="button"
+                    role="tab" aria-controls="pills-5" aria-selected="false">Responsibilities and Limitations</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="pills-6-tab" data-bs-toggle="pill" data-bs-target="#pills-6" type="button"
+                    role="tab" aria-controls="pills-6" aria-selected="false">Resources</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="pills-7-tab" data-bs-toggle="pill" data-bs-target="#pills-7" type="button"
+                    role="tab" aria-controls="pills-7" aria-selected="false">Frequently Asked Questions</button>
+            </li>
+
+        </ul>
+
+
+        <div class="tab-content shadow-sm" id="pills-tabContent">
+            <div class="tab-pane fade show active" id="pillsOverview" role="tabpanel"
+                aria-labelledby="pillsOverview-tab" tabindex="0">
+                <div class="card border-0 bg-light">
+                    <div class="card-body">
+                        <h4>What is CPT?</h4>
+                        <p>Curricular Practical Training (CPT) is a type of work authorization for F-1 students to learn
+                            practical skills related to their major area of study. Common forms of CPT include paid or
+                            unpaid internships, fellowships, and part-time or full-time jobs.
+                        </p>
+                        <p>CPT is an integral part of the student’s established program curriculum. Students who
+                            complete CPT will earn 1 credit after the course is completed, but neither the CPT course
+                            nor the CPT experience is required to graduate.
+                        </p>
+                        <!-- Insert Pictures here of WUST Career Fair or pictures showcasing WUST /Career Center -->
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="pills-Eligibility" role="tabpanel" aria-labelledby="pills-Eligibility-tab"
+                tabindex="0">
+                <div class="card border-0 bg-light">
+                    <div class="card-body">
+                        <h4>In order to be eligible for CPT, you must:</h4>
+                        <ul class="">
+                            <li>Maintain an active F-1 status </li>
+                            <li>Have completed 1 academic year in the same degree-awarding program (not an ESL school)
+                                while physically in the United States. This is equivalent to 3 quarters at WUST in the
+                                same program (or 2 semesters at a semester-based university).</li>
+                            <li>Be enrolled for a full course of study while engaging in CPT (unless on WUST-approved
+                                annual vacation).</li>
+                            <li>Have a CGPA of at least 2.0 (undergraduates) or 3.0 (graduates)</li>
+                            <li>Be in good academic standing (receiving an F grade will lead to immediate CPT
+                                revocation, and students who receive an F
+                                grade are not eligible for CPT their next quarter).</li>
+                            <li>Adhere to the ongoing rules and obligations of your F-1 visa
+                            </li>
+                            <li>Clear any outstanding balance (or be in compliance with your payment plan, if you have
+                                one).</li>
+                            <li>Have not already applied for OPT (for after graduation of your current program).</li>
+
+                        </ul>
+                        <p>If you fail to maintain the eligibility requirements once your CPT has been approved, your
+                            CPT authorization may be revoked or any extension request may be denied.
+                        </p>
+                        <p>WUST offers CPT to transfer-in students who have completed one academic year in a degree
+                            awarding program, or those who are coming off of OPT and are beginning a new program.
+                            Transfer students must provide an official transcript from their previous institution as
+                            proof they meet the eligibility requirements.
+                        </p>
+                        <!-- Insert Pictures here of WUST Career Fair or pictures showcasing WUST /Career Center -->
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="pills-how-to-apply" role="tabpanel" aria-labelledby="pills-how-to-apply-tab"
+                tabindex="0">
+                <div class="card border-0 bg-light">
+                    <div class="card-body">
+                        <!-- <h4>What is CPT?</h4> -->
+                        <p>Applications are submitted through our website- using the <a
+                                href="https://wust.forms-db.com/view.php?id=233025" target="_blank"> CPT Application
+                                Form</a>.
+                        </p>
+                        <p>To apply you will need the following:
+                        </p>
+                        <!-- Job Offer Letter -->
+                        <h5>1. Job Offer Letter</h5>
+                        <ul class="">
+                            <li>Position title</li>
+                            <li>Job description, duties, and responsibilities</li>
+                            <li>Start date (end dare is not required)</li>
+                            <li>Number of working hours per week</li>
+                            <li>Work location (if the position is remote, it muse be stated in the letter)</li>
+                            <li>Supervisor's name and title</li>
+                            <li>Supervisor's email address</li>
+                            <li>Signed by the employer</li>
+                            <li>Must be on official company letterhead</li>
+                        </ul>
+                        <!-- CPT Application Form -->
+                        <h5>2. CPT Application Form</h5>
+                        <p>You can download the<a href="https://wust.forms-db.com/view.php?id=233025" target="_blank">
+                                CPT Application
+                                Form here</a>. Male sure you fill out the form completely.</p>
+                        <p><strong>Note: Do NOT ask your employer to sign page 2 of the form. WUST will contact your
+                                employer directly for their signature.</strong></p>
+                        <p>Once you have both the job offer letter and the completed application form, you can submit
+                            your CPT application through the <a href="https://wust.forms-db.com/view.php?id=233025"
+                                target="_blank">Link</a>. </p>
+                        <!--  Application Fee -->
+                        <h5>3. Application Fee</h5>
+                        <p>Once you submit your application, it will be reviewed by Student Services. The CPT fee will
+                            be added to your Populi account. You must pay the fee before your application can be
+                            approved.</p>
+                        <p><strong>CPT Fees</strong></p>
+                        <ul class="">
+                            <li>Application Fee: $420 *Charged the first time you’re approved for CPT or when you
+                                receive new CPT authorization.</li>
+                            <li>Changes or Modifications: $75 (per change or modification)</li>
+                            <li>CPT Maintenance Fee: $35 (per quarter participating in CPT) </li>
+
+                        </ul>
+                        <p>CPT applications typically take 5-7 business days to process after employment verification
+                            has been completed and the CPT fee has been paid.</p>
+                        <!-- Insert Pictures here of WUST Career Fair or pictures showcasing WUST /Career Center -->
+
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="pills-when-to-apply" role="tabpanel"
+                aria-labelledby="pills-when-to-apply-tab" tabindex="0">
+                <div class="card border-0 bg-light">
+                    <div class="card-body">
+                        <h4>When to apply</h4>
+                        <p>Eligible students may apply for CPT before the quarter begins. It is strongly recommended
+                            students apply for CPT at least 2 weeks before their projected start date so there is enough
+                            time for WUST to process the CPT application. The application deadline is the first Friday
+                            of each quarter.
+                        </p>
+                        <p>Please note that we will not be accepting CPT applications past this deadline under any
+                            circumstances. This policy also applies to applications submitted before the deadline that
+                            require further necessary revisions in order to grant CPT authorization. To avoid this risk,
+                            we strongly encourage students to apply as early as possible. WUST will deny applications if
+                            the employer/supervisor does not verify the employment offer within 10 days of the start
+                            date. CPT applications must meet all the requirements outlined on our website to gain
+                            approval. Any applications that do not meet the requirements, including incomplete
+                            applications, will not be approved.
+                        </p>
+                        <!-- CPT Timeline Table -->
+                        <table>
+                            <tr>
+                                <th>CPT Quarter</th>
+                                <th>Fall 2025</th>
+                                <th>Winter 2026</th>
+                                <th>Spring 2026</th>
+                                <th>Summer 2026</th>
+                            </tr>
+                            <tr>
+                                <th>Application Deadline</th>
+                                <td>October 10, 2025</td>
+                                <td>January 16, 2025</td>
+                                <td>April 10, 2026</td>
+                                <td>July 17, 2026</td>
+                            </tr>
+                            <tr>
+                                <th>Add/Drop period ends</th>
+                                <td>October 13, 2025</td>
+                                <td>January 20, 2026</td>
+                                <td>April 13, 2026</td>
+                                <td>July 20, 2026</td>
+                            </tr>
+                            <tr>
+                                <th>Earliest possible start date</th>
+                                <td>October 06, 2025</td>
+                                <td>January 12, 2025</td>
+                                <td>April 04, 2026</td>
+                                <td>July 13, 2026</td>
+                            </tr>
+                            <tr>
+                                <th>Latest possible start date</th>
+                                <td>October 20, 2025</td>
+                                <td>January 26, 2026</td>
+                                <td>April 21, 2026</td>
+                                <td>July 26, 2026</td>
+                            </tr>
+                            <tr>
+                                <th>CPT Report Due</th>
+                                <td>December 12, 2025</td>
+                                <td>march 20, 2026</td>
+                                <td>June 12, 2026</td>
+                                <td>September 18, 2026</td>
+                            </tr>
+                        </table>
+                        <!-- Insert Pictures here of WUST Career Fair or pictures showcasing WUST /Career Center -->
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="pills-5" role="tabpanel" aria-labelledby="pills-5-tab" tabindex="0">
+                <div class="card border-0 bg-light">
+                    <div class="card-body">
+                        <h4>Responsibility and Limitations </h4>
+                        <p><strong>Students must maintain the following terms in order to stay on CPT, renew CPT, or
+                                change employers on CPT:</strong>
+                        </p>
+                        <h5>Responsibilities
+                        </h5>
+                        <ul class="">
+                            <li>Must maintain a CGPA of at least 2.0 (undergraduates) or 3.0 (graduates).</li>
+                            <li>Must pass the CPT course(s) you are registered for.</li>
+                            <li>Must attend ALL of your on-campus classes every quarter.
+                            </li>
+                            <li>Must stay in good standing, which includes your F-1 status, academic performance,
+                                student conduct, and financial obligation with WUST.</li>
+                            <li>Must balance their CPT employment with their on-campus obligations. </li>
+                        </ul>
+                        <h5>Limitations
+                        </h5>
+                        <ul class="">
+                            <li><strong>Hours per week -</strong> Students are not recommended to work no more than 40
+                                hours per week. Please remember it is your responsibility to calculate the number of
+                                months worked on CPT and how it will affect your OPT.
+                            </li>
+                            <li><strong>Location -</strong> Students must be physically present in the US while on the
+                                CPT.</li>
+                            <li><strong>CPT's impact on Optional Practical Training (OPT) -</strong> Students who
+                                participate in 12+ months of <strong>full-time</strong> CPT become ineligible to apply
+                                for OPT
+                            </li>
+
+                        </ul>
+                        <p><strong>Disclaimer: The Center for Career Services and International Student Services reserve
+                                the right to revoke CPT authorization if the student does not adhere to the regulations
+                                set forth by the institution or the Federal Government. Additionally, frequent changes
+                                to employment without justification and relevance to the course of study and its impact
+                                on your education will be considered and result in a denial of your request for a change
+                                of employment mid quarter. Disclaimer: The Center for Career Services and International
+                                Student Services reserve the right to revoke CPT authorization if the student does not
+                                adhere to the regulations set forth by the institution or the Federal Government.
+                                Additionally, frequent changes to employment without justification and relevance to the
+                                course of study and its impact on your education will be considered and result in a
+                                denial of your request for a change of employment mid quarter. </strong>
+                        </p>
+                        <!-- Insert Pictures here of WUST Career Fair or pictures showcasing WUST /Career Center -->
+                    </div>
+                </div>
+
+            </div>
+            <div class="tab-pane fade" id="pills-6" role="tabpanel" aria-labelledby="pills-6-tab" tabindex="0">
+                <div class="card border-0 bg-light">
+                    <div class="card-body">
+                        <h4>Resources </h4>
+
+                        <p>1. Example of Offer CPT Offer Letter <br>
+                            <span><a href="https://wust.edu/uploads/extra_file/17291052658213offer%20letter%20example%201.pdf"
+                                    target="_blank">EXAMPLE 1</a></span> <br>
+                            <span><a href="https://wust.edu/uploads/extra_file/17291052819215offer%20letter%20example%202.pdf"
+                                    target="_blank">EXAMPLE 2</a></span>
+                        </p>
+
+                        <p>2. Examples of the CPT Application Form<br>
+                            <span><a href="https://wust.edu/uploads/extra_file/17291053583422CPT%20application%20Example%201.pdf"
+                                    target="_blank">EXAMPLE 1</a></span> <br>
+                            <span><a href="https://wust.edu/uploads/extra_file/17291053737667CPT%20application%20example%202.pdf"
+                                    target="_blank">EXAMPLE 2</a></span>
+                        </p>
+                        <div class="resources-portal" style="display: flex;">
+                            <div class="interstride">
+                                <a href="https://student.interstride.com/" target="_blank"><img
+                                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTK25b7FQb62KC8hKiSCN0Gf4UR9cHmy6euDg&s"
+                                        width="100%" alt=""></a>
+                            </div>
+                            <div class="froghire" style="margin-left: 20px;">
+                                <a href="https://app.froghire.ai/login " target="_blank"><img
+                                        src="https://business.purdue.edu/careers/images/froghire.svg" width="30%"
+                                        alt=""></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="pills-7" role="tabpanel" aria-labelledby="pills-7-tab" tabindex="0">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="border border-primary rounded-3 p-2 border-2">
+                            <div class="accordion accordion-flush" id="accordionFlushExample">
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed" type="button"
+                                            data-bs-toggle="collapse" data-bs-target="#flush-collapseFifth"
+                                            aria-expanded="false" aria-controls="flush-collapseThree">
+                                            How do I apply for a Social Security number (SSN)?
+                                        </button>
+                                    </h2>
+                                    <div id="flush-collapseFifth" class="accordion-collapse collapse"
+                                        data-bs-parent="#accordionFlushExample">
+                                        <div class="accordion-body">
+                                            Once you receive your I-20 with CPT authorization, you can apply for a SNN.
+                                            You must do so directly with
+                                            the <a href="https://www.ssa.gov/number-card/request-number-first-time"
+                                                target="_blank">Social Security
+                                                Administration.</a> You will be required to gather the required
+                                            documents and visit a Social Security
+                                            office in person near you.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed" type="button"
+                                            data-bs-toggle="collapse" data-bs-target="#flush-collapseOne"
+                                            aria-expanded="false" aria-controls="flush-collapseOne">
+                                            What do I do if my CPT ends early?
+                                        </button>
+                                    </h2>
+                                    <div id="flush-collapseOne" class="accordion-collapse collapse"
+                                        data-bs-parent="#accordionFlushExample">
+                                        <div class="accordion-body">If your CPT employment ends early, you must notify
+                                            the International Students Office of your last date of employment by
+                                            completing this <a href="https://wust.forms-db.com/view.php?id=316307"
+                                                target="__blank">CPT End Date Form</a> within 10 days in order to update
+                                            your SEVIS record and have a new I-20 issued.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed" type="button"
+                                            data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo"
+                                            aria-expanded="false" aria-controls="flush-collapseTwo">
+                                            Will working on CPT impact my OPT application?
+                                        </button>
+                                    </h2>
+                                    <div id="flush-collapseTwo" class="accordion-collapse collapse"
+                                        data-bs-parent="#accordionFlushExample">
+                                        <div class="accordion-body">
+                                            <p style="
+                            font-size: inherit;
+                            line-height: inherit;
+                            margin-bottom: 15px;
+                            color: #656565;
+                            text-align: justify;
+                          ">
+                                                Students can participate in unlimited part-time CPT (20 hours per week
+                                                or less) with no consequences. <br>However, there is a limit on how much
+                                                full-time CPT a student can participate in. If a student does 12 months
+                                                or more of full-time CPT over the course of their program, they will
+                                                lose their eligibility to participate in post-completion OPT. We
+                                                recommend limiting your full-time CPT to less than 12 months if you plan
+                                                to apply for OPT.
+                                                <br>
+                                                If you do not plan to apply for OPT, you can participate in full-time
+                                                CPT for any amount of time as long as you are eligible.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed" type="button"
+                                            data-bs-toggle="collapse" data-bs-target="#flush-collapseThree"
+                                            aria-expanded="false" aria-controls="flush-collapseThree">
+                                            Can I change employers on CPT?
+                                        </button>
+                                    </h2>
+                                    <div id="flush-collapseThree" class="accordion-collapse collapse"
+                                        data-bs-parent="#accordionFlushExample">
+                                        <div class="accordion-body">
+                                            <p style="
+                            font-size: inherit;
+                            line-height: inherit;
+                            margin-bottom: 15px;
+                            color: #656565;
+                            text-align: justify;
+                          ">
+                                                Yes, you can apply to change employers at any time while on CPT.
+                                                However, you must notify the university (ex. Career Service Center
+                                                and/or ISO) within 10 days if your employment ends, and fill out this <a
+                                                    href="https://wust.forms-db.com/view.php?id=316307"
+                                                    target="_blank">CPT End Date Form</a>. If your employment ends, and
+                                                you are still waiting on an employment offer, we will recommend you
+                                                apply instead for the following term. You must submit a new CPT
+                                                application and pay the $75 fee. Remember, your new job must still be
+                                                directly related to your major area of study. You cannot begin your new
+                                                job until you receive an updated I-20 with the new CPT authorization on
+                                                it. Nor can you begin before the start date on the I-20.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed" type="button"
+                                            data-bs-toggle="collapse" data-bs-target="#flush-collapseFourth"
+                                            aria-expanded="false" aria-controls="flush-collapseFourth">
+                                            Does WUST provide assistance or resources for international students
+                                            regarding filing federal or state taxes?
+                                        </button>
+                                    </h2>
+                                    <div id="flush-collapseFourth" class="accordion-collapse collapse"
+                                        data-bs-parent="#accordionFlushExample">
+                                        <div class="accordion-body">
+                                            <p style="
+                            font-size: inherit;
+                            line-height: inherit;
+                            margin-bottom: 15px;
+                            color: #656565;
+                            text-align: justify;
+                          ">
+                                                WUST does not offer tax assistance or advice. Please consult with your
+                                                CPA for any questions regarding filing your income tax return.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed" type="button"
+                                            data-bs-toggle="collapse" data-bs-target="#flush-collapseSixth"
+                                            aria-expanded="false" aria-controls="flush-collapseThree">
+                                            How long will it take to process my CPT application?
+                                        </button>
+                                    </h2>
+                                    <div id="flush-collapseSixth" class="accordion-collapse collapse"
+                                        data-bs-parent="#accordionFlushExample">
+                                        <div class="accordion-body">
+                                            <p style="
+                            font-size: inherit;
+                            line-height: inherit;
+                            margin-bottom: 15px;
+                            color: #656565;
+                            text-align: justify;
+                          ">
+                                                CPT applications typically take 1-2 weeks to process. An exact
+                                                processing time cannot be given because
+                                                some of the processing steps are outside of the university’s control.
+                                            </p>
+                                            <p style="
+                            font-size: inherit;
+                            line-height: inherit;
+                            margin-bottom: 15px;
+                            color: #656565;
+                            text-align: justify;
+                          ">
+                                                You can speed up the process by ensuring your employer responds to the
+                                                employment verification email,
+                                                and by paying your CPT fee once it is added to your Populi account.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed" type="button"
+                                            data-bs-toggle="collapse" data-bs-target="#flush-collapseAuth"
+                                            aria-expanded="false" aria-controls="flush-collapseAuth">
+                                            Can I extend my CPT authorization?
+                                        </button>
+                                    </h2>
+                                    <div id="flush-collapseAuth" class="accordion-collapse collapse"
+                                        data-bs-parent="#accordionFlushExample">
+                                        <div class="accordion-body">Yes, you can extend your CPT authorization. You must
+                                            submit a new CPT
+                                            application. If you are continuing with the same employer, you should submit
+                                            an employment verification
+                                            letter instead of your original job offer letter. If you are changing
+                                            employers, use your new offer
+                                            letter. </div>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed" type="button"
+                                            data-bs-toggle="collapse" data-bs-target="#flush-collapseSeven"
+                                            aria-expanded="false" aria-controls="flush-collapseThree">
+                                            How do I find a job so I can apply for CPT?
+                                        </button>
+                                    </h2>
+                                    <div id="flush-collapseSeven" class="accordion-collapse collapse"
+                                        data-bs-parent="#accordionFlushExample">
+                                        <div class="accordion-body">If you need help or advice on finding a job, please
+                                            contact the <a href="https://wust.edu/career-services-center-csc">Career
+                                                Service Center.</a></div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed" type="button"
+                                            data-bs-toggle="collapse" data-bs-target="#flush-collapseEighth"
+                                            aria-expanded="false" aria-controls="flush-collapseThree">
+                                            Does my employer have to sponsor me to work in the U.S.?
+                                        </button>
+                                    </h2>
+                                    <div id="flush-collapseEighth" class="accordion-collapse collapse"
+                                        data-bs-parent="#accordionFlushExample">
+                                        <div class="accordion-body">No, your employer does not need to sponsor you in
+                                            order for you to work on
+                                            CPT. The university is authorized by USCIS to grant CPT authorization to
+                                            eligible students. All you need
+                                            is an I-20 with CPT authorization. </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed" type="button"
+                                            data-bs-toggle="collapse" data-bs-target="#flush-collapseNinth"
+                                            aria-expanded="false" aria-controls="flush-collapseThree">
+                                            Can I have more than one job on CPT?
+                                        </button>
+                                    </h2>
+                                    <div id="flush-collapseNinth" class="accordion-collapse collapse"
+                                        data-bs-parent="#accordionFlushExample">
+                                        <div class="accordion-body">
+                                            <p style="
+                            font-size: inherit;
+                            line-height: inherit;
+                            margin-bottom: 15px;
+                            color: #656565;
+                            text-align: justify;
+                          ">
+                                                It is possible to have 2 part-time jobs while on CPT. Both jobs must be
+                                                related to your major area of study.
+                                            </p>
+                                            <p style="
+                            font-size: inherit;
+                            line-height: inherit;
+                            margin-bottom: 15px;
+                            color: #656565;
+                            text-align: justify;
+                          ">
+                                                It is important to note that USCIS will consider having 2 part-time jobs
+                                                at the same time as full-time employment.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed" type="button"
+                                            data-bs-toggle="collapse" data-bs-target="#flush-collapsetenth"
+                                            aria-expanded="false" aria-controls="flush-collapseThree">
+                                            Where can I work?
+                                        </button>
+                                    </h2>
+                                    <div id="flush-collapsetenth" class="accordion-collapse collapse"
+                                        data-bs-parent="#accordionFlushExample">
+                                        <div class="accordion-body">Your work location must be within a commutable
+                                            distance from the university. Or the position must be remote. </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed" type="button"
+                                            data-bs-toggle="collapse" data-bs-target="#flush-collapseeleventh"
+                                            aria-expanded="false" aria-controls="flush-collapseThree">
+                                            Can I be excused from classes if I have to work that day?
+                                        </button>
+                                    </h2>
+                                    <div id="flush-collapseeleventh" class="accordion-collapse collapse"
+                                        data-bs-parent="#accordionFlushExample">
+                                        <div class="accordion-body">
+                                            <p style="
+                            font-size: inherit;
+                            line-height: inherit;
+                            margin-bottom: 15px;
+                            color: #656565;
+                            text-align: justify;
+                          ">
+                                                No. Employment obligations cannot be used to excuse you from class.
+                                            </p>
+                                            <p style="
+                            font-size: inherit;
+                            line-height: inherit;
+                            margin-bottom: 15px;
+                            color: #656565;
+                            text-align: justify;
+                          ">
+                                                Your number one priority as an F-1 student is to be a student. You are
+                                                fully expected to attend all of your classes, whether on campus or
+                                                online, and to keep up with your course work. If you are unable to do
+                                                so, your CPT authorization may be revoked.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed" type="button"
+                                            data-bs-toggle="collapse" data-bs-target="#flush-collapsetwelfth"
+                                            aria-expanded="false" aria-controls="flush-collapseThree">
+                                            I was offered on-campus employment. Do I need to apply for CPT?
+                                        </button>
+                                    </h2>
+                                    <div id="flush-collapsetwelfth" class="accordion-collapse collapse"
+                                        data-bs-parent="#accordionFlushExample">
+                                        <div class="accordion-body">
+                                            <p style="
+                            font-size: inherit;
+                            line-height: inherit;
+                            margin-bottom: 15px;
+                            color: #656565;
+                            text-align: justify;
+                          ">
+                                                Student workers hired for 20 hours per week or less do not need to apply
+                                                for CPT. In these circumstances, the employment does not need to be
+                                                related to your degree program.
+                                            </p>
+                                            <p style="
+                            font-size: inherit;
+                            line-height: inherit;
+                            margin-bottom: 15px;
+                            color: #656565;
+                            text-align: justify;
+                          ">
+                                                Student workers hired for more than 20 hours per week must apply for
+                                                full-time CPT. The duties and responsibilities of the position must be
+                                                directly related to your major area of study.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed" type="button"
+                                            data-bs-toggle="collapse" data-bs-target="#flush-collapsethirteenth"
+                                            aria-expanded="false" aria-controls="flush-collapseThree">
+                                            Can I apply for OPT while I am working on CPT?
+                                        </button>
+                                    </h2>
+                                    <div id="flush-collapsethirteenth" class="accordion-collapse collapse"
+                                        data-bs-parent="#accordionFlushExample">
+                                        <div class="accordion-body">Yes. You can submit your OPT application in your
+                                            final quarter. However, once you submit your OPT application, you will not
+                                            be allowed to extend your CPT or change your employer. Doing so could
+                                            jeopardize your OPT application with USCIS.</div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed" type="button"
+                                            data-bs-toggle="collapse" data-bs-target="#flush-collapsefourteenth"
+                                            aria-expanded="false" aria-controls="flush-collapseThree">
+                                            Do I need to keep my CPT I-20?
+                                        </button>
+                                    </h2>
+                                    <div id="flush-collapsefourteenth" class="accordion-collapse collapse"
+                                        data-bs-parent="#accordionFlushExample">
+                                        <div class="accordion-body">Yes. You should keep all I-20s for your records.
+                                            WUST does not keep I-20s on file for an extended period of time. </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed" type="button"
+                                            data-bs-toggle="collapse" data-bs-target="#flush-collapsefifteenth"
+                                            aria-expanded="false" aria-controls="flush-collapseThree">
+                                            I have more questions about CPT. Who can I talk to?
+                                        </button>
+                                    </h2>
+                                    <div id="flush-collapsefifteenth" class="accordion-collapse collapse"
+                                        data-bs-parent="#accordionFlushExample">
+                                        <div class="accordion-body">If you have more questions about CPT, please contact
+                                            <a href="mailto:careerservcies@wust.edu"> careerservices@wust.edu</a> or <a
+                                                href="mailto:iso@wust.edu"> iso@wust.edu</a>. <br>
+                                            CPT applications should be submitted by the beginning of the quarter you are
+                                            applying for. It is best to apply at least 1-2 weeks prior to your projected
+                                            start date. </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="pills-8" role="tabpanel" aria-labelledby="pills-8-tab" tabindex="0">
+                Tab 8 content load here...
+            </div>
+            <div class="tab-pane fade" id="pills-9" role="tabpanel" aria-labelledby="pills-9-tab" tabindex="0">
+                Tab 9 content load here...
+            </div>
+            <div class="tab-pane fade" id="pills-10" role="tabpanel" aria-labelledby="pills-10-tab" tabindex="0">
+                Tab 10 content load here...
+            </div>
+            <div class="tab-pane fade" id="pills-11" role="tabpanel" aria-labelledby="pills-11-tab" tabindex="0">
+                Tab 11 content load here...
+            </div>
+            <div class="tab-pane fade" id="pills-12" role="tabpanel" aria-labelledby="pills-12-tab" tabindex="0">
+                Tab 12 content load here...
+            </div>
+        </div>
+    </div>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
