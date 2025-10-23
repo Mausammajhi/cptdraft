@@ -8,76 +8,91 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <style>
-        :root {
-            --primary-color: #1e3a8a;
-            --secondary-color: #3b82f6;
-            --accent-color: #e5e7eb;
-        }
+:root {
+    --primary-color: #1e3a8a;
+    --secondary-color: #3b82f6;
+    --accent-color: #e5e7eb;
+}
 
-        h1,
-        h2,
-        h3,
-        h4,
-        h5,
-        h6 {
-            color: #2347a7;
-            font-weight: 600;
-        }
+h1, h2, h3, h4, h5, h6 {
+    color: #2347a7;
+    font-weight: 600;
+}
 
-        table {
-            width: 100%;
-        }
+table {
+    width: 100%;
+}
 
-        th,
-        td {
-            padding: 6px;
-            border: 1px solid #000;
-        }
+th, td {
+    padding: 6px;
+    border: 1px solid #000;
+}
+img{
+    border-radius: 6px;
+}
+/* === Tab Layout === */
+#pills-tab {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center;
+}
 
-        #pills-tab {
-            display: flex;
-            flex-wrap: wrap;
-        }
+/* Mobile: 1 tab per row */
+#pills-tab .nav-item {
+    flex: 0 0 100%;
+    max-width: 100%;
+}
 
-        /* Mobile: 1 item per row */
-        #pills-tab .nav-item:nth-child(-n+4) {
-            flex: 0 0 100%;
-            max-width: 100%;
-        }
+/* Tablet (≥768px): 2 tabs per row */
+@media (min-width: 768px) {
+    #pills-tab .nav-item {
+        flex: 0 0 calc(50% - 0.5rem);
+        max-width: calc(50% - 0.5rem);
+    }
+}
 
-        /* Tablet (≥768px): 2 items per row for first 4 */
-        @media (min-width: 768px) {
-            #pills-tab .nav-item:nth-child(-n+4) {
-                flex: 0 0 calc(50% - 0.5rem);
-                max-width: calc(50% - 0.5rem);
-            }
-        }
+/* Desktop (≥992px): custom sizing */
+@media (min-width: 992px) {
+    /* First row (1–3): widest */
+    #pills-tab .nav-item:nth-child(-n+3) {
+        flex: 0 0 calc(32% - 0.5rem);
+        max-width: calc(32% - 0.5rem);
+    }
 
-        /* Desktop (≥992px): 4 items per row for first 4 */
-        @media (min-width: 992px) {
-            #pills-tab .nav-item:nth-child(-n+4) {
-                flex: 0 0 calc(25% - 0.5rem);
-                max-width: calc(25% - 0.5rem);
-            }
-        }
+    /* Second row (4–7: includes FAQ + Resources): medium width */
+    #pills-tab .nav-item:nth-child(n+4) {
+        flex: 0 0 calc(23.5% - 0.5rem);
+        max-width: calc(23.5% - 0.5rem);
+    }
 
-        /* Remaining items auto-size with gap */
-        #pills-tab .nav-item:nth-child(n+5) {
-            flex: 0 0 auto;
-        }
+    /* Align last tab (Resources) directly beside FAQ */
+    #pills-tab .nav-item:last-child {
+        margin-left: 0;
+    }
+}
 
-        .nav-pills .nav-link {
-            border-radius: var(--bs-nav-pills-border-radius);
-            border: 1px solid #374151;
-            color: #374151 !important;
-            background-color: #fff !important;
-        }
+/* === Tab Button Styles === */
+.nav-pills .nav-link {
+    border-radius: var(--bs-nav-pills-border-radius);
+    border: 1px solid #374151;
+    color: #374151 !important;
+    background-color: #fff !important;
+    font-size: 0.95rem;
+    padding: 0.6rem;
+    transition: all 0.3s ease;
+}
 
-        .nav-pills .nav-link.active,
-        .nav-pills .show>.nav-link {
-            color: #fff !important;
-            background-color: var(--primary-color) !important;
-        }
+.nav-pills .nav-link:hover {
+    background-color: #f3f4f6 !important;
+}
+
+.nav-pills .nav-link.active,
+.nav-pills .show > .nav-link {
+    color: #fff !important;
+    background-color: var(--primary-color) !important;
+}
+
     </style>
 </head>
 
@@ -118,21 +133,23 @@
                     aria-selected="false">When to Apply</button>
             </li>
             <li class="nav-item" role="presentation">
-                <button class="nav-link" id="pills-5-tab" data-bs-toggle="pill" data-bs-target="#pills-5" type="button"
-                    role="tab" aria-controls="pills-5" aria-selected="false">Responsibilities and Limitations</button>
+                <button class="nav-link" id="pills-5-tab" data-bs-toggle="pill"
+                    data-bs-target="#pills-5" type="button" role="tab"
+                    aria-controls="pills-5" aria-selected="false">Responsibilities and Limitations</button>
             </li>
             <li class="nav-item" role="presentation">
-                <button class="nav-link" id="pills-6-tab" data-bs-toggle="pill" data-bs-target="#pills-6" type="button"
-                    role="tab" aria-controls="pills-6" aria-selected="false">Resources</button>
+                <button class="nav-link" id="pills-7-tab" data-bs-toggle="pill"
+                    data-bs-target="#pills-7" type="button" role="tab"
+                    aria-controls="pills-7" aria-selected="false">Frequently Asked Questions</button>
             </li>
+            <!-- Resources moved below FAQ -->
             <li class="nav-item" role="presentation">
-                <button class="nav-link" id="pills-7-tab" data-bs-toggle="pill" data-bs-target="#pills-7" type="button"
-                    role="tab" aria-controls="pills-7" aria-selected="false">Frequently Asked Questions</button>
+                <button class="nav-link" id="pills-6-tab" data-bs-toggle="pill"
+                    data-bs-target="#pills-6" type="button" role="tab"
+                    aria-controls="pills-6" aria-selected="false">Resources</button>
             </li>
-
         </ul>
-
-
+        
         <div class="tab-content shadow-sm" id="pills-tabContent">
             <div class="tab-pane fade show active" id="pillsOverview" role="tabpanel"
                 aria-labelledby="pillsOverview-tab" tabindex="0">
@@ -147,7 +164,14 @@
                             complete CPT will earn 1 credit after the course is completed, but neither the CPT course
                             nor the CPT experience is required to graduate.
                         </p>
-                        <!-- Insert Pictures here of WUST Career Fair or pictures showcasing WUST /Career Center -->
+                 <div class="row">
+                    <div class="col-md-6">
+                        <img src="https://wust.edu/uploads/extra_file/1761250378848DSCF2499.jpg" width="100%" alt="">
+                    </div>
+                    <div class="col-md-6">
+                        <img src="https://wust.edu/uploads/extra_file/17612509143252DSCF5437.jpg" width="100%" alt="">
+                    </div>
+                 </div>
                     </div>
                 </div>
             </div>
@@ -182,7 +206,14 @@
                             Transfer students must provide an official transcript from their previous institution as
                             proof they meet the eligibility requirements.
                         </p>
-                        <!-- Insert Pictures here of WUST Career Fair or pictures showcasing WUST /Career Center -->
+                        <div class="row">
+                            <div class="col-md-6">
+                                <img src="https://wust.edu/uploads/extra_file/17612510176271IMG_9718 (1).JPG" width="100%" alt="">
+                            </div>
+                            <div class="col-md-6">
+                                <img src="https://wust.edu/uploads/extra_file/17612510809790DSCF2508.jpg" width="100%" alt="">
+                            </div>
+                         </div>
                     </div>
                 </div>
             </div>
@@ -235,8 +266,14 @@
                         </ul>
                         <p>CPT applications typically take 5-7 business days to process after employment verification
                             has been completed and the CPT fee has been paid.</p>
-                        <!-- Insert Pictures here of WUST Career Fair or pictures showcasing WUST /Career Center -->
-
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <img src="https://wust.edu/uploads/extra_file/17612513543332IMG_9693.JPG" width="100%" alt="">
+                                </div>
+                                <div class="col-md-6">
+                                    <img src="https://wust.edu/uploads/extra_file/17612513669736DSCF2495.jpg" width="100%" alt="">
+                                </div>
+                             </div>
                     </div>
                 </div>
             </div>
@@ -304,8 +341,14 @@
                                 <td>September 18, 2026</td>
                             </tr>
                         </table>
-                        <!-- Insert Pictures here of WUST Career Fair or pictures showcasing WUST /Career Center -->
-                    </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <img src="https://wust.edu/uploads/extra_file/1761250378848DSCF2499.jpg" width="100%" alt="">
+                            </div>
+                            <div class="col-md-6">
+                                <img src="https://wust.edu/uploads/extra_file/17612509143252DSCF5437.jpg" width="100%" alt="">
+                            </div>
+                         </div>                    </div>
                 </div>
             </div>
             <div class="tab-pane fade" id="pills-5" role="tabpanel" aria-labelledby="pills-5-tab" tabindex="0">
@@ -353,8 +396,14 @@
                                 course of study and its impact on your education will be considered and result in a
                                 denial of your request for a change of employment mid quarter. </strong>
                         </p>
-                        <!-- Insert Pictures here of WUST Career Fair or pictures showcasing WUST /Career Center -->
-                    </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <img src="https://wust.edu/uploads/extra_file/1761250378848DSCF2499.jpg" width="100%" alt="">
+                            </div>
+                            <div class="col-md-6">
+                                <img src="https://wust.edu/uploads/extra_file/17612509143252DSCF5437.jpg" width="100%" alt="">
+                            </div>
+                         </div>                    </div>
                 </div>
 
             </div>
